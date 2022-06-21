@@ -4,7 +4,7 @@ const progressBar = document.querySelector(".progress-bar");
 const playBtn = document.getElementById("play-btn");
 const volumeIcon = document.getElementById("volume-icon");
 const volumeRange = document.querySelector(".volume-range");
-const volumeBar = document.querySelector(".volume-range");
+const volumeBar = document.querySelector(".volume-bar");
 const currentTime = document.querySelector(".time-elapsed");
 const duration = document.querySelector(".time-duration");
 const fullScreenBtn = document.querySelector(".fullscreen");
@@ -50,6 +50,20 @@ function setProgress(e) {
 
 // Volume Controls --------------------------- //
 
+function changeVolume(e) {
+  let volume = e.offsetX / volumeRange.offsetWidth;
+  volumeBar.style.width = `${volume * 100}%`;
+  video.volume = volume;
+  volumeIcon.className = "";
+  if (volume > 0.7) {
+    volumeIcon.classList.add("fas", "fa-volume-up");
+  } else if (volume < 0.7 && volume > 0) {
+    volumeIcon.classList.add("fas", "fa-volume-down");
+  } else if (volume === 0) {
+    volumeIcon.classList.add("fas", "fa-volume-off");
+  }
+}
+
 // Change Playback Speed -------------------- //
 
 // Fullscreen ------------------------------- //
@@ -63,3 +77,4 @@ video.addEventListener("timeupdate", updateProgress);
 video.addEventListener("canplay", updateProgress);
 
 progressRange.addEventListener("click", setProgress);
+volumeRange.addEventListener("click", changeVolume);
