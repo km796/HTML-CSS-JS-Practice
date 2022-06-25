@@ -64,6 +64,7 @@ body {
 
 /* Images Container */
 .images-container {
+  width: 800px;
   margin-top: 50px;
 }
 
@@ -77,6 +78,12 @@ body {
 
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  border-radius: 5px 5px 0 0;
 }
 
 .card-body {
@@ -112,7 +119,15 @@ body {
     font-size: 0.9rem;
   }
 
+  .images-container {
+    width: 100%;
+  }
+
   .card-title {
     font-size: 20px;
+  }
+
+  .save-confirmed {
+    right: 25px;
   }
 }
