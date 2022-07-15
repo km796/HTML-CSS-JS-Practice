@@ -1,4 +1,4 @@
-const resultsNas = document.getElementById("resultsNav");
+const resultsNav = document.getElementById("resultsNav");
 const favouritesNav = document.getElementById("favouritesNav");
 const imagesContainer = document.querySelector(".images-container");
 const saveConfirmed = document.querySelector(".save-confirmed");
@@ -12,8 +12,15 @@ const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&count=${co
 let resultsArray = [];
 let favourites = {};
 
-function showContent() {
+function showContent(page) {
   window.scrollTo({ top: 0, behavior: "instant" });
+  if (page === "results") {
+    resultsNav.classList.remove("hidden");
+    favouritesNav.classList.add("hidden");
+  } else {
+    resultsNav.classList.add("hidden");
+    favouritesNav.classList.remove("hidden");
+  }
   loader.classList.add("hidden");
 }
 
@@ -83,7 +90,7 @@ function updateDOM(page) {
   }
   imagesContainer.textContent = "";
   createDOMNodes(page);
-  showContent();
+  showContent(page);
 }
 
 // Get 10 images from NASA API
